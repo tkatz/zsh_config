@@ -17,7 +17,7 @@ function precmd {
   exit_code=$?
   if [ $exit_code -ne 0 ] && [ $FAILD_CMD_ID -ne $CMD_ID ]; then
     FAILD_CMD_ID=$CMD_ID
-    echo_color $fg_bold[red] "exit $exit_code"
+    echo_color $fg_bold[red] "✘ $exit_code"
     echo
   fi
 }
