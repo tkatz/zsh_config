@@ -1,4 +1,4 @@
-# Promt
+# Promt ########################################################################
 autoload -U colors && colors
 function echo_color {
   local color=$1
