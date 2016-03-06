@@ -1,11 +1,18 @@
-export ZSH_CONFIG_DIR=$(dirname $0)
-cd "$ZSH_CONFIG_DIR"
+ZSH_CONFIG_DIR="$(dirname $0)"
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
-# Imports ######################################################################
-source ./plugins.zsh
-source ./history.zsh
-source ./prompt.zsh
-source ./completions.zsh
-source ./aliases.zsh
+# Vi mode
+#bindkey -v
+
+# Configs ######################################################################
+# for file in ./*.zsh(.N); do
+#   source $file
+# done
+
+source "$ZSH_CONFIG_DIR/plugins.zsh"
+source "$ZSH_CONFIG_DIR/prompt.zsh"
+source "$ZSH_CONFIG_DIR/completions.zsh"
+source "$ZSH_CONFIG_DIR/history.zsh"
+source "$ZSH_CONFIG_DIR/functions.zsh"
+source "$ZSH_CONFIG_DIR/aliases.zsh"
