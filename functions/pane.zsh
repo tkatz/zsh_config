@@ -8,13 +8,29 @@
 #     tab [CMD]             Open a new tab and execute CMD
 #     tab [PATH] [CMD] ...  You can prolly guess
 function pane {
+    split="V"
     cmd=$(echo "$@")
+    if [ "$1" = "-V" ]; then
+      split="V"
+      cmd=$(echo "${${@}[@]:1}")
+    fi
+    if [ "$1" = "-H" ]; then
+      split="H"
+      cmd=$(echo "${${@}[@]:1}")
+    fi
+
     cmd=$(echo "$cmd" | sed 's/\\\\/\\\\\\\\/g' | sed 's/"/\\\"/g')
 
     case "$TERM_PROGRAM" in
 
       'iTerm.app')
-        osascript -e "tell application \"System Events\" to keystroke \"d\" using {shift down, command down}"
+        if [ "$split" = "V" ]; then
+          osascript -e "tell application \"System Events\" to keystroke \"d\" using {command down}"
+        fi
+        if [ "$split" = "H" ]; then
+          osascript -e "tell application \"System Events\" to keystroke \"d\" using {command down, shift down}"
+        fi
+
         if [ -n "$cmd" ]; then
           osascript -e "tell application \"System Events\" to keystroke \"$cmd\n\""
         fi
@@ -23,24 +39,34 @@ function pane {
         echo "Unsuported terminal: $TERM_PROGRAM" >&2
         ;;
     esac
-
 }
 
 function panex {
-    declare -a commands
-    commands=$@
-    osascript -e "tell application \"System Events\" to keystroke \"n\" using {command down}"
+    col_count=4
+    if [ -z "$col_count" ]; then
+      col_count=1
+    fi
 
-    first_command=true
-    for cmd in $commands; do
-      if [ frist_command ]; then
-        osascript -e "tell application \"System Events\" to keystroke \"$cmd\n\""
-        frist_command=false
+    osascript -e "tell application \"System Events\" to keystroke \"n\" using {command down}"
+  
+    command_count=$#
+    command_id=0
+    for cmd in "$@"; do
+      command_id=$(($command_id + 1))
+      if [ $command_id -eq 1 ]; then
+        if [ -n "$cmd" ]; then
+          osascript -e "tell application \"System Events\" to keystroke \"$cmd\n\""
+        fi
       else
-        pane "$cmd"
+        if [ $command_id -le $col_count ]; then
+          pane -V "$cmd"
+        else
+          pane -H "$cmd"
+        fi
+        if [ $command_id -ge $col_count ] && [ $command_id -lt $command_count ]; then
+          #(ASCII character 29) = arrow right
+          osascript -e "tell application \"System Events\" to keystroke (ASCII character 29) using {option down, command down}"
+        fi
       fi
     done
-    #osascript -e "tell application \"System Events\" to keystroke (ASCII character 31) using {option down, command down}"
-    #osascript -e "tell application \"System Events\" to keystroke \"d\" using {control down}"
-    #osascript -e "tell application \"System Events\" to keystroke \"i\" using {option down, command down}"
 }
