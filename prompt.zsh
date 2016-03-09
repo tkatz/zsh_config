@@ -16,7 +16,7 @@ function preexec {
 
 # print exit code on error
 local FAILD_CMD_ID=0
-function precmd {
+function precmd2 {
   exit_code=$?
   if [ $exit_code -ne 0 ] && [ $FAILD_CMD_ID -ne $CMD_ID ]; then
     FAILD_CMD_ID=$CMD_ID
@@ -39,12 +39,12 @@ function precmd {
   #echo_color $fg[white] " GIT_INFO "
   #echo_color $fg[white] "$(date '+%Y-%m-%d %H:%M:%S')"
   echo
-  #echo_color $fg_bold[white] "→ "
+  echo_color $fg_bold[white] "❯ "
 }
-#setopt promptsubst
 
-#PROMPT=""
-PS1='❯ '
+setopt promptsubst
+
+PS1='$(precmd2)'
 PS2='▪ '
 
 #RPROMPT='[%D{%H:%M:%S}]'
