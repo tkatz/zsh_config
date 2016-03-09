@@ -1,6 +1,8 @@
 # Promt ########################################################################
 autoload -U colors && colors
 
+LC_ALL="en_US.UTF-8"
+
 function echo_color {
   local color=$1
   local text=$2
@@ -39,13 +41,15 @@ function precmd {
   echo
   #echo_color $fg_bold[white] "→ "
 }
-
 #setopt promptsubst
-PROMPT="%{$fg_bold[white]%}→ %{$reset_color%}"
+
+#PROMPT=""
+PS1='❯ '
+PS2='▪ '
+
 #RPROMPT='[%D{%H:%M:%S}]'
 
-
 # Edit the current command line in $EDITOR
-autoload -U edit-command-line
+autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey '^e' edit-command-line
+bindkey "^X^E" edit-command-line

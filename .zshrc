@@ -2,6 +2,11 @@ ZSH_CONFIG_DIR="$(dirname $0)"
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
+bindkey -e
+
+export VISUAL=vim
+export EDITOR=vim
+
 # Vi mode
 #bindkey -v
 

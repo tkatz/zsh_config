@@ -14,6 +14,15 @@ if [ ! -e "$ZSH_PLUGIN_DIR/zsh-history-substring-search" ]; then
 fi
 source $ZSH_PLUGIN_DIR/zsh-history-substring-search/zsh-history-substring-search.zsh
 
+# zsh-history-substring-search configuration
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=default,fg=magenta,bold'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=default,fg=black,bold'
+HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS='i'
+
+# bind UP and DOWN arrow keys
+bindkey '^[[A' history-substring-search-up     # bind arrow-up
+bindkey '^[[B' history-substring-search-down   # bind arrow-down
+
 
 # zsh-autosuggestions ##########################################################
 if [ ! -e "$ZSH_PLUGIN_DIR/zsh-autosuggestions" ]; then

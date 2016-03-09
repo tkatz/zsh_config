@@ -48,7 +48,8 @@ function panex {
     fi
 
     osascript -e "tell application \"System Events\" to keystroke \"n\" using {command down}"
-  
+    osascript -e "tell application \"System Events\" to keystroke \"=\" using {command down, option down}"
+
     command_count=$#
     command_id=0
     for cmd in "$@"; do
