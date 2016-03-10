@@ -43,7 +43,7 @@ function precmd {
 }
 
 #setopt promptsubst
-PS1="❯"
+PS1='❯ '
 #PS1='$(precmd2)'
 PS2='▪ '
 #PS2='└ '
