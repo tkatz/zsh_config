@@ -24,9 +24,4 @@ setopt NO_HIST_BEEP
 export HISTFILE=$HISTFILE       # ensure history file visibility
 export HH_CONFIG=hicolor        # get more colors
 
-alias hh='hh; exit_code=$?; if [ $exit_code -ne 2 ]; then exit $exit_code; fi' # suppress error on ctrl + c exit
 bindkey -s "^R" "hh\n"            # bind Ctrl + r
-
-
-
-
