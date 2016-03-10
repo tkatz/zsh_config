@@ -24,11 +24,12 @@ bindkey '^[[A' history-substring-search-up     # bind arrow-up
 bindkey '^[[B' history-substring-search-down   # bind arrow-down
 
 
-zsh-autosuggestions ##########################################################
-if [ ! -e "$ZSH_PLUGIN_DIR/zsh-autosuggestions" ]; then
-  git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGIN_DIR/zsh-autosuggestions
-fi
-source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
+# zsh-autosuggestions ##########################################################
+# if [ ! -e "$ZSH_PLUGIN_DIR/zsh-autosuggestions" ]; then
+#   git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGIN_DIR/zsh-autosuggestions
+# fi
+# source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
+# ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=("expand-or-complete")
 
 
 # zsh-completions ##############################################################
