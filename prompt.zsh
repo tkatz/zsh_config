@@ -16,7 +16,7 @@ function preexec {
 
 # print exit code on error
 local FAILD_CMD_ID=0
-function precmd2 {
+function precmd {
   exit_code=$?
   if [ $exit_code -ne 0 ] && [ $FAILD_CMD_ID -ne $CMD_ID ]; then
     FAILD_CMD_ID=$CMD_ID
@@ -42,10 +42,11 @@ function precmd2 {
   echo_color $fg_bold[white] "❯ "
 }
 
-setopt promptsubst
-
-PS1='$(precmd2)'
+#setopt promptsubst
+PS1="❯"
+#PS1='$(precmd2)'
 PS2='▪ '
+#PS2='└ '
 
 #RPROMPT='[%D{%H:%M:%S}]'
 

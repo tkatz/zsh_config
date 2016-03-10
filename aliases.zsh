@@ -1,5 +1,5 @@
 # Aliases ######################################################################
-alias ls="ls -FGl1"
+alias ls="ls -FGl"
 alias grep='grep --color=auto'
 
 alias http-server="open http://localhost:8080; http-server"
