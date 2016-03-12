@@ -11,6 +11,9 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "$LS_COLORS"
 zstyle ':completion:*' completer _complete _correct _approximate
 
-zstyle ':completion:*:killall:*' command 'ps -u $USER -o cmd'
+zstyle ':completion:*:killall:*' command 'ps -u $USER -o command'
+
+#zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+
 
 setopt AUTO_CD

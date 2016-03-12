@@ -19,5 +19,5 @@ function ip-internal {
 }
 
 function ip-external {
-  curl ifconfig.me
+  curl ifconfig.co
 }
