@@ -8,6 +8,16 @@ function preexec {
   CMD_ID=$(expr $CMD_ID + 1)
 }
 
+#print all default colors
+function fg_print {
+  for k in "${(@k)fg}"; do
+    echo "$fg[$k]$k$reset_color"
+    echo "$fg_bold[$k]$k$reset_color"
+    echo "$bg[$k]$k$reset_color"
+    echo "$bg_bold[$k]$k$reset_color"
+  done
+}
+
 # print exit code on error
 local FAILD_CMD_ID=0
 function precmd {
@@ -20,17 +30,22 @@ function precmd {
   current_user=$(whoami)
   current_host=$(hostname -s)
   current_dir=$(pwd | sed -e "s|^$HOME|~|" -e 's-\([^/.]\)[^/]*/-\1/-g')
-  git_branch=$(git branch | sed -n '/\* /s///p')
+  current_branch=$(git branch 2> /dev/null | sed -n '/\* /s///p' | sed 's/^( *//;s/ *)$//;')
 
-  precmd="${fg_bold[blue]}#$reset_color "
-  if [ "$USER" = "root" ]; then
-    precmd+="${fg_bold[red]}$current_user$reset_color"
-  else
-    precmd+="${fg[cyan]}$current_user$reset_color"
+  precmd="${fg_bold[grey]}#$reset_color "
+
+  # current_user & current_host
+  if [ "$current_user" = "root" ]; then precmd+="${fg_bold[red]}"; else precmd+="${fg[cyan]}"; fi
+  precmd+="$current_user$reset_color${fg[white]}@$reset_color${fg[green]}$current_host$reset_color"
+
+  # current_dir
+  precmd+=" ${fg_bold[grey]}in$reset_color ${fg[yellow]}$current_dir$reset_color"
+
+  # current_branch
+  if [[ "$current_branch" != "detached "* ]]; then
+    precmd+=" ${fg_bold[grey]}on$reset_color"
   fi;
-  precmd+="${fg[white]}@$reset_color${fg[green]}$current_host$reset_color"
-  precmd+=" ${fg[white]}in$reset_color ${fg[yellow]}$current_dir$reset_color"
-  precmd+=" ${fg[white]}at$reset_color ${fg[blue]}$git_branch$reset_color"
+  precmd+=" ${fg[blue]}$current_branch$reset_color"
 
   echo "$precmd"
 }
