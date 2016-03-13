@@ -20,6 +20,7 @@ function precmd {
   current_user=$(whoami)
   current_host=$(hostname -s)
   current_dir=$(pwd | sed -e "s|^$HOME|~|" -e 's-\([^/.]\)[^/]*/-\1/-g')
+  git_branch=$(git branch | sed -n '/\* /s///p')
 
   precmd="${fg_bold[blue]}#$reset_color "
   if [ "$USER" = "root" ]; then
@@ -29,6 +30,8 @@ function precmd {
   fi;
   precmd+="${fg[white]}@$reset_color${fg[green]}$current_host$reset_color"
   precmd+=" ${fg[white]}in$reset_color ${fg[yellow]}$current_dir$reset_color"
+  precmd+=" ${fg[white]}at$reset_color ${fg[blue]}$git_branch$reset_color"
+
   echo "$precmd"
 }
 

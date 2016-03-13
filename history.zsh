@@ -18,8 +18,6 @@ setopt HIST_VERIFY
 setopt NO_HIST_BEEP
 
 
-
-
 # HH configuration
 export HISTFILE=$HISTFILE       # ensure history file visibility
 export HH_CONFIG=hicolor        # get more colors

@@ -7,6 +7,7 @@ bindkey -e
 export VISUAL=vim
 export EDITOR=vim
 
+
 setopt INTERACTIVE_COMMENTS
 
 
