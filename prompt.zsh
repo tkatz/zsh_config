@@ -32,20 +32,108 @@ function precmd {
   current_dir=$(pwd | sed -e "s|^$HOME|~|" -e 's-\([^/.]\)[^/]*/-\1/-g')
   current_branch=$(git branch 2> /dev/null | sed -n '/\* /s///p' | sed 's/^( *//;s/ *)$//;')
 
+#Your branch and 'origin/master' have diverged,
+# and have 1 and 1 different commit each, respectively.
+
+#Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+
+#Changes to be committed:
+
+#Changes not staged for commit:
+
+#Untracked files:
+
+#
+# …clean…
+#
+# …dirty…
+#
+# …ahead…
+#
+# …behind…
+#
+# …branches have diverged… ↓↑●✖✚
+
+# c_cyan=`tput setaf 6`
+# c_red=`tput setaf 1`
+# c_green=`tput setaf 2`
+# c_sgr0=`tput sgr0`
+# c_pink=`tput setaf 5`
+# parse_git_branch ()
+# {
+# git rev-parse –git-dir >/dev/null 2>&1
+# if [ $? -eq 0 ]; then
+# remote=””
+# git_status=”$(git status 2> /dev/null)”
+# if [ $? -eq 128 ]; then
+# echo ” (!GIT_DIR!)”
+# else
+# branch=`git rev-parse –abbrev-ref HEAD`
+# git config –get branch.$branch.remote >/dev/null 2>&1
+# if [ $? -eq 0 ]; then
+# #its a tracking branch
+# behind=`git log ..@{u} –pretty=oneline | wc -l | sed -e ‘s/[ \t]*//g’`
+# ahead=`git log @{u}.. –pretty=oneline | wc -l | sed -e ‘s/[ \t]*//g’`
+# diverged=`git log @{u}… –pretty=oneline | wc -l | sed -e ‘s/[ \t]*//g’`
+#
+# if [ $diverged -ne 0 ]; then
+#
+# if [ “$behind” == “$diverged” ]; then
+# #remote=” [$behind]↓”
+# remote=”↓”
+# elif [ “$ahead” == “$diverged” ]; then
+# #remote=” [$ahead]
+# remote=”↑”
+# else
+# remote=”↕”
+# #remote=” [$behind]↓ [$ahead]↑”
+# fi
+# fi
+# fi
+# echo ” (${branch}${remote})”
+# fi
+# else
+# return 0
+# fi
+# }
+# branch_color ()
+# {
+# color=””
+# git rev-parse –git-dir >/dev/null 2>&1
+# if [ $? -eq 0 ]; then
+# git status –untracked-files=no –porcelain >/dev/null 2>&1
+# if [ $? -eq 128 ]; then
+# color=${c_pink}
+# elif [ -z “$(git status –untracked-files=no –porcelain)” ]; then
+# color=”${c_green}”
+# else
+# color=${c_red}
+# fi
+# else
+# return 0
+# fi
+# echo -ne $color
+# }
+#
+# export PS1=’\[33[1;32m\]\u\[33[0m\]@\[33[1;36m\]\h\[33[0m\] \W\[$(branch_color)\]$(parse_git_branch)\[33[0m\] \$ ‘
+
+
   precmd="${fg_bold[grey]}#$reset_color "
 
   # current_user & current_host
   if [ "$current_user" = "root" ]; then precmd+="${fg_bold[red]}"; else precmd+="${fg[cyan]}"; fi
-  precmd+="$current_user$reset_color${fg[white]}@$reset_color${fg[green]}$current_host$reset_color"
+  precmd+="$current_user$reset_color${fg_bold[grey]}@$reset_color${fg[blue]}$current_host$reset_color"
 
   # current_dir
   precmd+=" ${fg_bold[grey]}in$reset_color ${fg[yellow]}$current_dir$reset_color"
 
   # current_branch
-  if [[ "$current_branch" != "detached "* ]]; then
-    precmd+=" ${fg_bold[grey]}on$reset_color"
-  fi;
-  precmd+=" ${fg[blue]}$current_branch$reset_color"
+  if [ -n "$current_branch" ]; then
+    if [[ "$current_branch" != "detached "* ]]; then
+      precmd+=" ${fg_bold[grey]}on$reset_color"
+    fi;
+    precmd+=" ${fg[green]}$current_branch$reset_color"
+  fi
 
   echo "$precmd"
 }

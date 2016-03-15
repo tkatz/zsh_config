@@ -1,3 +1,4 @@
+#colorize manpage
 function man {
   env \
    LESS_TERMCAP_md=$(printf '\e[1;32m') \

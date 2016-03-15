@@ -20,8 +20,11 @@ setopt INTERACTIVE_COMMENTS
 # done
 
 source "$ZSH_CONFIG_DIR/plugins.zsh"
+source "$ZSH_CONFIG_DIR/aliases.zsh"
+source "$ZSH_CONFIG_DIR/functions.zsh"
+source "$ZSH_CONFIG_DIR/history.zsh"
 source "$ZSH_CONFIG_DIR/prompt.zsh"
 source "$ZSH_CONFIG_DIR/completions.zsh"
-source "$ZSH_CONFIG_DIR/history.zsh"
-source "$ZSH_CONFIG_DIR/functions.zsh"
-source "$ZSH_CONFIG_DIR/aliases.zsh"
+
+
+
