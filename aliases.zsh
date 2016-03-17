@@ -5,7 +5,8 @@ alias mv='mv -i' # ask before overwrite file
 alias cp='cp -i' # ask before overwrite file
 alias rm='rm -i' # ask before remove file
 
-alias ls="ls -FGl"
+alias ls="ls -Gl"
+alias find="find_ls"
 alias grep='grep --color=auto'
 
 alias http-server="open http://localhost:8080; http-server"
