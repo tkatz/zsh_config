@@ -26,5 +26,5 @@ function find_ls {
     ls_args=(${@:$(expr $ls_args_seperator_index + 1)})
   fi
 
-  ls -d $(/usr/bin/find $find_args)
+  ls $ls_args -d $(/usr/bin/find $find_args)
 }
