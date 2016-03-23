@@ -1,5 +1,6 @@
 # Aliases ######################################################################
-alias .zshrc='source ~/.zshrc' # reload .zshrc
+alias zsh_config_reload='source ~/.zshrc' # reload .zshrc
+alias zsh_config='atom ~/.zshrc' # reload .zshrc
 
 alias mv='mv -i' # ask before overwrite file
 alias cp='cp -i' # ask before overwrite file
