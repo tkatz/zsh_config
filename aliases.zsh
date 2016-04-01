@@ -12,7 +12,7 @@ alias grep='grep --color=auto'
 alias http-server='\http-server -p 8080 -o' # npm i -g http-server
 alias http-server-ssl='\http-server -p 8443 -o --ssl --cert ~/.ssl/localhost.pem --key ~/.ssl/localhost.pem '
 alias https-server='http-server-ssl'
-# sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ~/.ssl/localhost.pem
+# OSX: sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ~/.ssl/localhost.pem
 
 alias gitlog="git log --graph --all --date=format:'%a %Y-%m-%d %H:%M:%S' --pretty=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%ad%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n           %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'"
 
