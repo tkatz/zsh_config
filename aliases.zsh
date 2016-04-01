@@ -1,6 +1,7 @@
 # Aliases ######################################################################
+
+alias zsh_config="atom $ZSH_CONFIG_DIR" # open zsh config folder
 alias zsh_config_reload='source ~/.zshrc' # reload .zshrc
-alias zsh_config='atom ~/.zsh' # open zsh config folder
 
 alias mv='\mv -i' # ask before overwrite file
 alias cp='\cp -i' # ask before overwrite file
