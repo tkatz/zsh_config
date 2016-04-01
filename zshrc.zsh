@@ -1,22 +1,17 @@
 # plugin management
-ZSH_PLUGIN_DIR="$ZSH_CONFIG_DIR/plugins"
 
-function zsh_plugin_install {
-  repo_url=$1
+function zsh_plugin_load {
+  plugin_name=$1
+  plugin_dir="$ZSH_PLUGIN_DIR/$plugin_name"
   zsh_file=$2
-  repo_name=$(basename "$repo_url" ".${repo_url##*.}")
-  plugin_dir="$ZSH_PLUGIN_DIR/$repo_name"
 
-  if [ ! -e "$plugin_dir" ]; then
-    echo "* install $repo_name";
-    git clone "$repo_url" "$plugin_dir"
-    echo
-  fi
-
+  # try default files
   if [ -z "$zsh_file" ]; then
-    zsh_file="$repo_name.zsh";
-    if [ ! -e "$plugin_dir/$zsh_file" ] && [ -e "$plugin_dir/$repo_name.plugin.zsh" ]; then
-      zsh_file="$repo_name.plugin.zsh";
+    zsh_file="$plugin_name.zsh";
+    if [ -e "$plugin_dir/$plugin_name.zsh" ]; then
+      zsh_file="$plugin_name.zsh";
+    elif [ -e "$plugin_dir/$plugin_name.plugin.zsh" ]; then
+      zsh_file="$plugin_name.plugin.zsh";
     fi
   fi
 
@@ -28,10 +23,29 @@ function zsh_plugin_install {
   source "$plugin_dir/$zsh_file"
 }
 
-function zsh_plugin_update {
-  for plugin in $(echo $ZSH_PLUGIN_DIR/*); do echo "* $plugin";
+function zsh_plugin_install {
+  repo_url=$1
+  plugin_name=$(basename "$repo_url" ".${repo_url##*.}")
+  plugin_dir="$ZSH_PLUGIN_DIR/$plugin_name"
+
+  zsh_file=$2
+
+  if [ ! -e "$plugin_dir" ]; then
+    echo "* install $plugin_name";
+    git clone "$repo_url" "$plugin_dir"
+    echo
+  fi
+
+  zsh_plugin_load "$plugin_name" "$zsh_file"
+}
+
+
+function zsh_plugin_update_all {
+  for plugin in $(find "$ZSH_PLUGIN_DIR" -type d -mindepth 1 -maxdepth 1); do
+    echo "* update $plugin";
     cd $plugin;
     git pull
     cd - 1> /dev/null
   done
+  source "$ZSH_CONFIG_DIR/plugins.zsh"
 }

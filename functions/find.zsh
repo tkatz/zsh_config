@@ -1,4 +1,4 @@
-function find_ls {
+function find-ls {
 
   if [[ "$1" = "--help" ]]; then
     echo "Usage: find_ls find_args [--ls ls_args]"
