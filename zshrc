@@ -1,3 +1,6 @@
+## Changing shell for User
+# chsh -s /bin/zsh
+
 ZSH_CONFIG_DIR="$(dirname $0)"
 ZSH_PLUGIN_DIR="$ZSH_CONFIG_DIR/plugins"
 ZSH_FUNCTION_DIR="$ZSH_CONFIG_DIR/functions"
@@ -10,6 +13,9 @@ bindkey -e # emacs mode
 # bindkey -v # Vi mode
 
 setopt INTERACTIVE_COMMENTS
+
+alias zsh_configure="atom $ZSH_CONFIG_DIR" # open zsh config folder
+alias zsh_config_reload='source ~/.zshrc' # reload .zshrc
 
 # for file in ./*.zsh(.N); do
 #   source $file
@@ -29,6 +35,3 @@ source "$ZSH_CONFIG_DIR/aliases.zsh"
 source "$ZSH_CONFIG_DIR/history.zsh"
 source "$ZSH_CONFIG_DIR/prompt.zsh"
 source "$ZSH_CONFIG_DIR/completions.zsh"
-
-
-

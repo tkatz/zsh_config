@@ -1,17 +1,28 @@
 # Completions ##################################################################
-zstyle :compinstall filename "$0"
 
+#setopt AUTO_CD
+setopt EXTENDEDGLOB
+setopt NOMATCH # If a pattern for filename generation has no matches, print an error, instead of leaving it unchanged in the argument list.
+setopt COMPLETE_IN_WORD         # Not just at the end
+setopt ALWAYS_TO_END            # When complete from middle, move cursor
+setopt AUTO_LIST
+setopt AUTO_MENU
+setopt MENU_COMPLETE
+
+unsetopt CORRECT # disable Spelling corrections
+
+zstyle :compinstall filename "$0"
 autoload -Uz compinit && compinit
 
-#setopt menu_complete
 
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30"
 
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
-zstyle ':completion:*' menu select
+zstyle ':completion:*' menu select=2
+
 zstyle ':completion:*' list-colors "$LS_COLORS"
-zstyle ':completion:*' completer _complete _approximate
+zstyle ':completion:*' completer _complete
 
 zstyle ':completion:*:killall:*' command 'ps -u $USER -o command'
 zstyle ':completion:*:*:killall:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
@@ -37,6 +48,3 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 ###
 #zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
-
-
-setopt AUTO_CD

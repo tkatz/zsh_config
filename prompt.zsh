@@ -1,4 +1,7 @@
-# Promt ########################################################################  
+# Promt ########################################################################
+setopt NOTIFY #Report the status of background jobs immediately, rather than waiting until just before printing a prompt.
+
+
 autoload -U colors && colors
 
 LC_ALL="en_US.UTF-8"
@@ -18,6 +21,7 @@ function fg_print {
   done
 }
 
+# setopt print_exit_value         # Alert me if something's failed
 # print exit code on error
 local FAILD_CMD_ID=0
 function precmd {
