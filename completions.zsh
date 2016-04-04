@@ -4,19 +4,19 @@
 setopt EXTENDEDGLOB
 #setopt GLOB_COMPLETE
 setopt NOMATCH # If a pattern for filename generation has no matches, print an error, instead of leaving it unchanged in the argument list.
-setopt COMPLETE_IN_WORD         # Not just at the end
-setopt ALWAYS_TO_END            # When complete from middle, move cursor
-setopt AUTO_LIST
-setopt AUTO_MENU
-setopt MENU_COMPLETE
-
+setopt COMPLETE_IN_WORD # Not just at the end
+setopt ALWAYS_TO_END # When complete from middle, move cursor
+setopt AUTO_LIST # Automatically list choices on ambiguous completion.
+setopt AUTO_MENU # Show completion menu on a successive tab press.
+setopt MENU_COMPLETE # Do not autoselect the first completion entry.
 
 unsetopt CORRECT # disable Spelling corrections
 
 autoload -Uz compinit && compinit
 
-export LSCOLORS="exfxcxdxbxegedabagacad"
-export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30"
+# ls Colors
+LSCOLORS="exfxcxdxbxegedabagacad"
+LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30"
 
 zstyle ':completion:*' completer _complete
 zstyle ':completion:*' list-colors "$LS_COLORS"
