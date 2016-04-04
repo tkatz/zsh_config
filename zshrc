@@ -9,29 +9,38 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export VISUAL=vim
 export EDITOR=vim
 
-bindkey -e # emacs mode
-# bindkey -v # Vi mode
-
 setopt INTERACTIVE_COMMENTS
 
-alias zsh_configure="atom $ZSH_CONFIG_DIR" # open zsh config folder
-alias zsh_config_reload='source ~/.zshrc' # reload .zshrc
+# emacs mode
+bindkey -e # emacs mode
+
+# Edit the current command line in $EDITOR
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
+# vim mode
+# bindkey -v # Vi mode
+
 
 # for file in ./*.zsh(.N); do
 #   source $file
 # done
 
-source "$ZSH_CONFIG_DIR/zshrc.zsh"
+# load helper module
+source "$ZSH_CONFIG_DIR/helper.zsh"
 
 # load plugins
 source "$ZSH_CONFIG_DIR/plugins.zsh"
-
 # load all functions
 for function in $(find "$ZSH_FUNCTION_DIR" -type f -name '*.zsh'); do
   source $function
 done
-
+# load aliases
 source "$ZSH_CONFIG_DIR/aliases.zsh"
+# load history
 source "$ZSH_CONFIG_DIR/history.zsh"
+# load prompt
 source "$ZSH_CONFIG_DIR/prompt.zsh"
+# load completions
 source "$ZSH_CONFIG_DIR/completions.zsh"

@@ -121,7 +121,7 @@ function precmd {
 #
 # export PS1=’\[33[1;32m\]\u\[33[0m\]@\[33[1;36m\]\h\[33[0m\] \W\[$(branch_color)\]$(parse_git_branch)\[33[0m\] \$ ‘
 
-
+  # precmd start
   precmd="${fg_bold[grey]}#$reset_color "
 
   # current_user & current_host
@@ -142,13 +142,9 @@ function precmd {
   echo "$precmd"
 }
 
-#setopt promptsubst
+# setopt promptsubst # substitude variables within prompt string
 PS1='❯ '
 PS2='▪ '
 
-#RPROMPT='[%D{%H:%M:%S}]'
-
-# Edit the current command line in $EDITOR
-autoload -Uz edit-command-line
-zle -N edit-command-line
-bindkey "^X^E" edit-command-line
+# right prompt
+# RPROMPT='[%D{%H:%M:%S}]' # date
