@@ -1,23 +1,18 @@
 ## Changing shell for User
 # chsh -s /bin/zsh
 
-ZSH_CONFIG_DIR="$(dirname $0)"
-ZSH_PLUGIN_DIR="$ZSH_CONFIG_DIR/plugins"
-ZSH_FUNCTION_DIR="$ZSH_CONFIG_DIR/functions"
+export ZSH_CONFIG_DIR="$(dirname $0)"
+export ZSH_PLUGIN_DIR="$ZSH_CONFIG_DIR/plugins"
+export ZSH_FUNCTION_DIR="$ZSH_CONFIG_DIR/functions"
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export VISUAL=vim
 export EDITOR=vim
 
-setopt INTERACTIVE_COMMENTS
+LC_ALL="en_US.UTF-8"
 
 # emacs mode
 bindkey -e # emacs mode
-
-# Edit the current command line in $EDITOR
-autoload -Uz edit-command-line
-zle -N edit-command-line
-bindkey "^X^E" edit-command-line
 
 # vim mode
 # bindkey -v # Vi mode

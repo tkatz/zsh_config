@@ -1,11 +1,15 @@
 # Promt ########################################################################
-setopt NOTIFY #Report the status of background jobs immediately, rather than waiting until just before printing a prompt.
+setopt NOTIFY # Report the status of background jobs immediately, rather than waiting until just before printing a prompt.
+setopt INTERACTIVE_COMMENTS # Allowes to use #-sign as comment within commandline
 
+# Edit the current command line in $EDITOR
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
 
 autoload -U colors && colors
 
-LC_ALL="en_US.UTF-8"
-
+# count prompt for command
 local CMD_ID=0
 function preexec {
   CMD_ID=$(expr $CMD_ID + 1)
