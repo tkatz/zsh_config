@@ -14,7 +14,6 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_VERIFY
 #setopt SHARE_HISTORY # share command history between sessions
-
 setopt NO_HIST_BEEP
 
 # HH configuration

@@ -11,24 +11,26 @@ setopt MENU_COMPLETE
 
 unsetopt CORRECT # disable Spelling corrections
 
-zstyle :compinstall filename "$0"
 autoload -Uz compinit && compinit
-
 
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30"
 
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
-zstyle ':completion:*' menu select=2
-
+zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "$LS_COLORS"
 zstyle ':completion:*' completer _complete
 
-zstyle ':completion:*:killall:*' command 'ps -u $USER -o command'
-zstyle ':completion:*:*:killall:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:*:*:*:processes' command 'ps -u ${USER} -o pid,user,command'
+zstyle ':completion:*:*:*:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:*:*:*:processes-names' command  'ps -c -u ${USER} -o command | uniq'
 
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,command'
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:killall:*' command 'ps -u $USER -o command'
+
+zstyle ':completion:*:*:kill:*' force-list always
+zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:*:kill:*' menu yes select
+
 ###
 
 # zstyle ':completion:*' auto-description 'specify: %d'

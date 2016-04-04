@@ -1,15 +1,15 @@
 ## Changing shell for User
 # chsh -s /bin/zsh
 
-export ZSH_CONFIG_DIR="$(dirname $0)"
-export ZSH_PLUGIN_DIR="$ZSH_CONFIG_DIR/plugins"
-export ZSH_FUNCTION_DIR="$ZSH_CONFIG_DIR/functions"
-
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export VISUAL=vim
 export EDITOR=vim
 
-LC_ALL="en_US.UTF-8"
+export ZSH_CONFIG_DIR="$(dirname $0)"
+export ZSH_PLUGIN_DIR="$ZSH_CONFIG_DIR/plugins"
+export ZSH_FUNCTION_DIR="$ZSH_CONFIG_DIR/functions"
+
+export LC_ALL="en_US.UTF-8"
 
 # emacs mode
 bindkey -e # emacs mode
