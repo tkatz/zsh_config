@@ -28,7 +28,6 @@ zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX
 zstyle ':completion:*' list-colors "$LS_COLORS"
 
 zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*:*:*:*:*' force-list always
 zstyle ':completion:*:*:*:*:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # Hypen- & caseinsensitive matching
 
 zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the parent directory (e.g.: cd ../<TAB>)
@@ -38,7 +37,11 @@ zstyle ':completion:*:*:*:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-_]#
 
 zstyle ':completion:*:*:*:*:processes-names' command  'ps -c -u ${USER} -o command | uniq'
 
+zstyle ':completion:*:*kill:*' force-list always
+
 zstyle ':completion:*:killall:*' command 'ps -u $USER -o command'
+
+
 
 ###
 
