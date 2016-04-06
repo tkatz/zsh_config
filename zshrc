@@ -11,25 +11,19 @@ export ZSH_MODULE_DIR="$ZSH_CONFIG_DIR/modules"
 
 export LC_ALL="en_US.UTF-8"
 
-# emacs mode
-bindkey -e # emacs mode
+bindkey -e # -e emacs mode -v for vi mode
 
-# vim mode
-# bindkey -v # Vi mode
-
-
-# for file in ./*.zsh(.N); do
-#   source $file
-# done
+# aliases
+alias zsh_configure="atom $ZSH_CONFIG_DIR" # open zsh config folder
+alias zsh_config_reload='source ~/.zshrc' # reload .zshrc
 
 # load helper module
 source "$ZSH_CONFIG_DIR/helper.zsh"
 
 # load plugins
 source "$ZSH_CONFIG_DIR/plugins.zsh"
-# load all functions
+
+# load all modules
 for module in $(find "$ZSH_MODULE_DIR" -type f -name '*.zsh'); do
   source $module
 done
-# load aliases
-source "$ZSH_CONFIG_DIR/aliases.zsh"
