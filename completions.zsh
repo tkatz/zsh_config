@@ -7,7 +7,7 @@ setopt NOMATCH # If a pattern for filename generation has no matches, print an e
 setopt COMPLETE_IN_WORD # Not just at the end
 setopt ALWAYS_TO_END # When complete from middle, move cursor
 setopt AUTO_LIST # Automatically list choices on ambiguous completion.
-setopt AUTO_MENU # Show completion menu on a successive tab press.
+# setopt AUTO_MENU # Show completion menu on a successive tab press.
 # setopt MENU_COMPLETE # Do autoselect the first completion entry.
 
 unsetopt CORRECT # disable Spelling corrections
@@ -29,8 +29,30 @@ zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # Hypen- & caseinsensitive matching
 zstyle ':completion:*' list-colors "$LS_COLORS"
 
-zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' menu select
 
+# ## Listing behaviour
+# zstyle ':completion:*' group-name ''
+# zstyle ':completion:*' force-list always
+# zstyle ':completion:*' last-prompt true
+# zstyle ':completion:*' list-dirs-first true
+# zstyle ':completion:*' list-grouped true
+# zstyle ':completion:*' list-packed true
+# zstyle ':completion:*' list-separator '--'
+# zstyle ':completion:*' separate-sections true
+# ## Output properties
+#zstyle ':completion:*' show-completer true
+# ## Menu behaviour
+# zstyle ':completion:*' menu yes select
+# zstyle ':completion:*' insert-unanbiguous false
+# zstyle '*' single-ignored show
+# ## Show more information for matches
+# zstyle ':completion:*' extra-verbose true
+# zstyle ':completion:*' file-list always
+# zstyle ':completion:*' strip-comments false
+# ## Use caching
+# zstyle ':completion::complete:*' use-cache true
+# zstyle ':completion::complete:*' cache-path ~/.cache/
 
 
 zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the parent directory (e.g.: cd ../<TAB>)
