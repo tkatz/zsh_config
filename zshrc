@@ -7,7 +7,7 @@ export EDITOR=vim
 
 export ZSH_CONFIG_DIR="$(dirname $0)"
 export ZSH_PLUGIN_DIR="$ZSH_CONFIG_DIR/plugins"
-export ZSH_FUNCTION_DIR="$ZSH_CONFIG_DIR/functions"
+export ZSH_MODULE_DIR="$ZSH_CONFIG_DIR/modules"
 
 export LC_ALL="en_US.UTF-8"
 
@@ -28,14 +28,8 @@ source "$ZSH_CONFIG_DIR/helper.zsh"
 # load plugins
 source "$ZSH_CONFIG_DIR/plugins.zsh"
 # load all functions
-for function in $(find "$ZSH_FUNCTION_DIR" -type f -name '*.zsh'); do
-  source $function
+for module in $(find "$ZSH_MODULE_DIR" -type f -name '*.zsh'); do
+  source $module
 done
 # load aliases
 source "$ZSH_CONFIG_DIR/aliases.zsh"
-# load history
-source "$ZSH_CONFIG_DIR/history.zsh"
-# load prompt
-source "$ZSH_CONFIG_DIR/prompt.zsh"
-# load completions
-source "$ZSH_CONFIG_DIR/completions.zsh"
