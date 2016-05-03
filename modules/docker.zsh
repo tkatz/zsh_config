@@ -1,5 +1,5 @@
 function docker-setup {
-  eval (docker-machine env default)
+  eval $(docker-machine env default)
 }
 
 function docker-connect {
