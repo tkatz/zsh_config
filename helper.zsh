@@ -39,13 +39,22 @@ function zsh_plugin_install {
   zsh_plugin_load "$plugin_name" "$zsh_file"
 }
 
+function zsh_update_config {
+  cd $ZSH_CONFIG_DIR;
+  git pull
+  cd - 1> /dev/null
+  zsh_plugin_update_all
+}
 
 function zsh_plugin_update_all {
+  cd $ZSH_CONFIG_DIR;
+  git pull
+  cd - 1> /dev/null
   for plugin in $(find "$ZSH_PLUGIN_DIR" -type d -mindepth 1 -maxdepth 1); do
     echo "* update $plugin";
     cd $plugin;
     git pull
     cd - 1> /dev/null
   done
-  source "$ZSH_CONFIG_DIR/plugins.zsh"
+  zsh_config_reload
 }
