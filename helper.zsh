@@ -56,5 +56,5 @@ function zsh_plugin_update_all {
     git pull
     cd - 1> /dev/null
   done
-  zsh_config_reload
+  zsh_reload_config
 }
