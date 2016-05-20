@@ -1,7 +1,7 @@
-function find-ls {
+function which-ls {
 
   if [[ "$1" = "--help" ]]; then
-    echo "Usage: find_ls find_args [--ls ls_args]"
+    echo "Usage: which_ls which_args [--ls ls_args]"
     return
   fi
 
@@ -17,7 +17,7 @@ function find-ls {
     echo 0;
   }
 
-  find_args=($@)
+  which_args=($@)
   ls_args=
 
   ls_args_seperator_index=$(index "--ls" $@)
@@ -26,5 +26,5 @@ function find-ls {
     ls_args=(${@:$(expr $ls_args_seperator_index + 1)})
   fi
 
-  ls $ls_args -d $(command find $find_args)
+  ls $ls_args -d $(command which $which_args)
 }
