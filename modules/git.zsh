@@ -4,6 +4,7 @@ alias git-log="git log --graph --all --date=format:'%a %Y-%m-%d %H:%M:%S' --pret
 alias git-hash='git rev-parse HEAD'
 
 git config --global pull.rebase true
+git config --global push.followTags true
 
 # find template in files folder
 # git config --global commit.template ~/git_commit_template.txt
@@ -18,17 +19,33 @@ function git-repository-version-latest {
   git describe --all --tags --match 'v*' --first-parent --abbrev=0 | sed 's|^v||'
 }
 
-function git-repository-version-next {
+function git-repository-version-bump-recommendation {
   latest_version=$(git-repository-version-latest)
   latest_version_array=($(echo "$latest_version" | grep -E -o "[^.-]+" ))
   latest_version_array[4]=$(echo "$latest_version" | sed "s|^[^-]*||" )
 
   next_version_array=($latest_version_array)
   if [ -n "$(git log --grep '^BREAKING CHANGE')" ]; then
+    echo "major"
+  elif [ -n "$(git log --grep '^feat')" ]; then
+    echo "minor"
+  else
+    echo "patch"
+  fi
+}
+
+function git-repository-version-next {
+  latest_version=$(git-repository-version-latest)
+  latest_version_array=($(echo "$latest_version" | grep -E -o "[^.-]+" ))
+  latest_version_array[4]=$(echo "$latest_version" | sed "s|^[^-]*||" )
+
+  next_version_bump_recommendation=$(git-repository-version-bump-recommendation)
+  next_version_array=($latest_version_array)
+  if [ "$next_version_bump_recommendation" = "major" ]; then
     next_version_array[1]=$((${next_version_array[1]}+1))
     next_version_array[2]=0
     next_version_array[3]=0
-  elif [ -n "$(git log --grep '^feat')" ]; then
+  elif [ "$next_version_bump_recommendation" = "minor" ]; then
     next_version_array[2]=$((${next_version_array[2]}+1))
     next_version_array[3]=0
   else
