@@ -14,8 +14,7 @@ export LC_ALL="en_US.UTF-8"
 bindkey -e # -e emacs mode -v for vi mode
 
 # aliases
-alias zsh_configure="atom $ZSH_CONFIG_DIR" # open zsh config folder
-alias zsh_reload_config='source ~/.zshrc' # reload .zshrc
+
 
 # load helper module
 source "$ZSH_CONFIG_DIR/helper.zsh"

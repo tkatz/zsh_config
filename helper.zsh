@@ -1,6 +1,22 @@
 # plugin management
+alias zshrc_configure="atom $ZSH_CONFIG_DIR" # open zshrc config folder
 
-function zsh_plugin_load {
+alias zshrc_reload='source ~/.zshrc' # reload .zshrc
+
+function zshrc_update {
+  cd $ZSH_CONFIG_DIR;
+  git pull
+  cd - 1> /dev/null
+  for plugin in $(find "$ZSH_PLUGIN_DIR" -type d -mindepth 1 -maxdepth 1); do
+    echo "* update $plugin";
+    cd $plugin;
+    git pull
+    cd - 1> /dev/null
+  done
+  zshrc_reload
+}
+
+function _zshrc_plugin_load {
   plugin_name=$1
   plugin_dir="$ZSH_PLUGIN_DIR/$plugin_name"
   zsh_file=$2
@@ -23,7 +39,7 @@ function zsh_plugin_load {
   source "$plugin_dir/$zsh_file"
 }
 
-function zsh_plugin_install {
+function _zshrc_plugin_install {
   repo_url=$1
   plugin_name=$(basename "$repo_url" ".${repo_url##*.}")
   plugin_dir="$ZSH_PLUGIN_DIR/$plugin_name"
@@ -36,22 +52,5 @@ function zsh_plugin_install {
     echo
   fi
 
-  zsh_plugin_load "$plugin_name" "$zsh_file"
-}
-
-function zsh_update_config {
-  cd $ZSH_CONFIG_DIR;
-  git pull
-  cd - 1> /dev/null
-  zsh_plugin_update_all
-}
-
-function zsh_plugin_update_all {
-  for plugin in $(find "$ZSH_PLUGIN_DIR" -type d -mindepth 1 -maxdepth 1); do
-    echo "* update $plugin";
-    cd $plugin;
-    git pull
-    cd - 1> /dev/null
-  done
-  zsh_reload_config
+  _zshrc_plugin_load "$plugin_name" "$zsh_file"
 }
