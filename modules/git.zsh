@@ -3,16 +3,22 @@ alias git-log="git log --graph --all --date=format:'%a %Y-%m-%d %H:%M:%S' --pret
 
 alias git-hash='git rev-parse HEAD'
 
+git config --global merge.ff false
 git config --global pull.rebase true
 git config --global push.followTags true
+git config --global tag.sort version:refname
+#git config --global core.editor "atom --wait"
 
 # find template in files folder
 # git config --global commit.template ~/git_commit_template.txt
 
+
 # npm install --global commitizen
 # npm install --global cz-conventional-changelog
 # echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
+
 # npm install --global conventional-changelog-cli
+
 # npm install --global conventional-recommended-bump
 
 function git-repository-version-latest {
