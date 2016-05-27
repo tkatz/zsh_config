@@ -21,10 +21,10 @@ function preexec {
 #print all default colors
 function fg_print {
   for k in "${(@k)fg}"; do
-    echo "$fg[$k]$k$reset_color"
-    echo "$fg_bold[$k]$k$reset_color"
-    echo "$bg[$k]$k$reset_color"
-    echo "$bg_bold[$k]$k$reset_color"
+    echo "fg      $fg[$k]$k$reset_color"
+    echo "fg_bol  $fg_bold[$k]$k$reset_color"
+    echo "bg      $bg[$k]$k$reset_color"
+    echo "bg_bold $bg_bold[$k]$k$reset_color"
   done
 }
 
@@ -46,19 +46,19 @@ function precmd {
 
 
   # precmd start
-  precmd="${fg_bold[grey]}#$reset_color "
+  precmd="${fg[default]}#$reset_color "
 
   # current_user & current_host
   if [ "$current_user" = "root" ]; then precmd+="${fg_bold[red]}"; else precmd+="${fg[cyan]}"; fi
-  precmd+="$current_user$reset_color${fg_bold[grey]}@$reset_color${fg[blue]}$current_host$reset_color"
+  precmd+="$current_user$reset_color${fg[default]}@$reset_color${fg[blue]}$current_host$reset_color"
 
   # current_dir
-  precmd+=" ${fg_bold[grey]}in$reset_color ${fg[yellow]}$current_dir$reset_color"
+  precmd+=" ${fg[default]}in$reset_color ${fg[yellow]}$current_dir$reset_color"
 
   # current_branch
   if [ -n "$current_branch" ]; then
     if [[ "$current_branch" != "detached "* ]]; then
-      precmd+=" ${fg_bold[grey]}on$reset_color"
+      precmd+=" ${fg[default]}on$reset_color"
     fi;
     precmd+=" ${fg[green]}$current_branch$reset_color"
   fi
