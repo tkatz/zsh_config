@@ -15,3 +15,7 @@ bindkey '^[[B' history-substring-search-down   # bind arrow-down
 
 # zsh-completions ##############################################"################
 _zshrc_plugin_install 'https://github.com/zsh-users/zsh-completions.git'
+
+if [ ! -e "$ZSH_PLUGIN_DIR/zsh-completions/src/_docker" ]; then
+  curl -o "$ZSH_PLUGIN_DIR/zsh-completions/src/_docker" https://raw.githubusercontent.com/docker/docker/master/contrib/completion/zsh/_docker
+fi
