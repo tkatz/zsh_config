@@ -22,7 +22,7 @@ function preexec {
 function fg_print {
   for k in "${(@k)fg}"; do
     echo "fg      $fg[$k]$k$reset_color"
-    echo "fg_bol  $fg_bold[$k]$k$reset_color"
+    echo "fg_bold $fg_bold[$k]$k$reset_color"
     echo "bg      $bg[$k]$k$reset_color"
     echo "bg_bold $bg_bold[$k]$k$reset_color"
   done
