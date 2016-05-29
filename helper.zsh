@@ -1,7 +1,7 @@
 # plugin management
 alias zshrc_configure="atom $ZSH_CONFIG_DIR" # open zshrc config folder
 
-alias zshrc_reload='source ~/.zshrc' # reload .zshrc
+alias zshrc_reload='exec $SHELL -l' # reload .zshrc
 
 function zshrc_update {
   cd $ZSH_CONFIG_DIR;
