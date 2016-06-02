@@ -8,6 +8,7 @@ export EDITOR=vim
 export ZSH_CONFIG_DIR="$(dirname $0)"
 export ZSH_PLUGIN_DIR="$ZSH_CONFIG_DIR/plugins"
 export ZSH_MODULE_DIR="$ZSH_CONFIG_DIR/modules"
+export ZSH_FILE_DIR="$ZSH_CONFIG_DIR/files"
 
 export LC_ALL="en_US.UTF-8"
 
