@@ -9,6 +9,18 @@ git config --global push.followTags true
 git config --global tag.sort version:refname
 #git config --global core.editor "atom --wait"
 
+if [ -e '/Applications/IntelliJ IDEA.app' ]; then
+  git config --global mergetool.intellij.cmd '/usr/local/bin/idea merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")'
+  git config --global mergetool.intellij.trustExitCode false
+  git config --global merge.tool intellij
+
+  git config --global difftool.intellij.cmd '/usr/local/bin/idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")'
+  git config --global difftool.intellij.trustExitCode false
+  git config --global diff.tool intellij
+fi
+
+
+
 # find template in files folder
 # git config --global commit.template ~/git_commit_template.txt
 

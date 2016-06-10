@@ -33,3 +33,12 @@ if ! $(find "$ZSH_PLUGIN_DIR/zsh-completions/src/_brew" -mmin +$(expr 60 \* 24 \
   echo "update brew completition"
   curl -s -L -o "$ZSH_PLUGIN_DIR/zsh-completions/src/_brew" "https://raw.githubusercontent.com/Homebrew/brew/master/share/zsh/site-functions/_brew"
 fi
+
+# brew install siege
+# brew install node
+# brew install nmap
+# brew install htop
+# brew install hh
+# brew install jq
+# brew install httpie
+# npm install --global http-server
