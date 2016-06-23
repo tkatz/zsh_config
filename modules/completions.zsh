@@ -1,4 +1,5 @@
 # Completions ##################################################################
+fpath=(/usr/local/share/zsh-completions $fpath)
 
 # setopt AUTO_CD
 setopt EXTENDEDGLOB
