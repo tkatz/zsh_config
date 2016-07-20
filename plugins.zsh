@@ -41,4 +41,5 @@ fi
 # brew install hh
 # brew install jq
 # brew install httpie
+# brew tap yudai/gotty && brew install gotty
 # npm install --global http-server
