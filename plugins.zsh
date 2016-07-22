@@ -1,10 +1,10 @@
 # Plugins ######################################################################
 
 # zsh-syntax-highlighting ######################################################
-_zshrc_plugin_install 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
+zsh_plugin_install 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
 
 # zsh-history-substring-search #################################################
-_zshrc_plugin_install 'https://github.com/zsh-users/zsh-history-substring-search.git'
+zsh_plugin_install 'https://github.com/zsh-users/zsh-history-substring-search.git'
 
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=default,fg=magenta,bold'
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=default,fg=black,bold'
@@ -14,7 +14,7 @@ bindkey '^[[A' history-substring-search-up     # bind arrow-up
 bindkey '^[[B' history-substring-search-down   # bind arrow-down
 
 # zsh-completions ##############################################"################
-_zshrc_plugin_install 'https://github.com/zsh-users/zsh-completions.git'
+zsh_plugin_install 'https://github.com/zsh-users/zsh-completions.git'
 
 # docker completitions
 if command -v docker >/dev/null && ! $(find "$ZSH_PLUGIN_DIR/zsh-completions/src/_docker" -mmin +$(expr 60 \* 24 \* 7) 2> /dev/null); then
@@ -33,13 +33,3 @@ if command -v docker >/dev/null && ! $(find "$ZSH_PLUGIN_DIR/zsh-completions/src
   echo "update brew completition"
   curl -s -L -o "$ZSH_PLUGIN_DIR/zsh-completions/src/_brew" "https://raw.githubusercontent.com/Homebrew/brew/master/share/zsh/site-functions/_brew"
 fi
-
-# brew install siege
-# brew install node
-# brew install nmap
-# brew install htop
-# brew install hh
-# brew install jq
-# brew install httpie
-# brew tap yudai/gotty && brew install gotty
-# npm install --global http-server
