@@ -13,7 +13,7 @@ function zsh_config_update {
     git pull
     cd - 1> /dev/null
   done
-  zsh_reload
+  zsh_config_reload
 }
 
 function zsh_plugin_load {
