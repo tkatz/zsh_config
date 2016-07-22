@@ -27,8 +27,11 @@ elif ask "Want to use $SELF_DIR as zsh config directory?"; then
   echo "$ZSHENV_FILE_COMMAND" > "$ZSHENV_FILE"
 fi
 
+USER=${USER:-$(id -un)}
 if [ "$(uname)" == "Darwin" ]; then
-  CURRENT_USER_SHELL=$(dscl . -read /Users/$USER | grep UserShell | cut -c12-)
+  CURRENT_USER_SHELL=$(dscl . -read /Users/$USER | grep UserShell | cut -d' ' -f2)
+else
+  CURRENT_USER_SHELL=$(getent passwd $USER | cut -d':' -f7)
 fi
 if [ "$CURRENT_USER_SHELL" == "/bin/zsh" ]; then
   echo "user shell already is /bin/zsh"

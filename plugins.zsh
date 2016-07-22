@@ -28,8 +28,8 @@ if command -v docker-compose >/dev/null && ! $(find "$ZSH_PLUGIN_DIR/zsh-complet
   curl -s -L -o "$ZSH_PLUGIN_DIR/zsh-completions/src/_docker-compose" "https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose"
 fi
 
-# docker-compose completitions
-if command -v docker >/dev/null && ! $(find "$ZSH_PLUGIN_DIR/zsh-completions/src/_brew" -mmin +$(expr 60 \* 24 \* 7) 2> /dev/null); then
+# brew completitions
+if command -v brew >/dev/null && ! $(find "$ZSH_PLUGIN_DIR/zsh-completions/src/_brew" -mmin +$(expr 60 \* 24 \* 7) 2> /dev/null); then
   echo "update brew completition"
   curl -s -L -o "$ZSH_PLUGIN_DIR/zsh-completions/src/_brew" "https://raw.githubusercontent.com/Homebrew/brew/master/share/zsh/site-functions/_brew"
 fi
