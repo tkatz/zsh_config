@@ -5,10 +5,11 @@ alias zsh_config_reload='exec $SHELL -l' # reload zsh
 
 function zsh_config_update {
   cd $ZSH_CONFIG_DIR;
+  echo "* update config $(pwd)"
   git pull
   cd - 1> /dev/null
   for plugin in $(find "$ZSH_PLUGIN_DIR" -type d -mindepth 1 -maxdepth 1); do
-    echo "* update $plugin";
+    echo "* update plugin $plugin";
     cd $plugin;
     git pull
     cd - 1> /dev/null
