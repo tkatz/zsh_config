@@ -1,8 +1,3 @@
-export VISUAL=vim
-export EDITOR=vim
-
-bindkey -e # -e emacs mode -v for vi mode
-
 # aliases
 
 # load helper module
