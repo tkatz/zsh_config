@@ -24,7 +24,6 @@ function zsh_plugin_load {
 
   # try default files
   if [ -z "$zsh_file" ]; then
-    zsh_file="$plugin_name.zsh";
     if [ -e "$plugin_dir/$plugin_name.zsh" ]; then
       zsh_file="$plugin_name.zsh";
     elif [ -e "$plugin_dir/$plugin_name.plugin.zsh" ]; then
@@ -34,7 +33,6 @@ function zsh_plugin_load {
 
   if [ ! -e "$plugin_dir/$zsh_file" ]; then
     echo "* $repo_name: zsh plugin file not found $plugin_dir/$zsh_file" 1>&2
-    echo
     return;
   fi
   source "$plugin_dir/$zsh_file"
