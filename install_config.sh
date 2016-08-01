@@ -11,20 +11,23 @@ SELF_DIR="$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
 SELF_DIR="$(echo "$SELF_DIR" | sed "s|^$HOME|\$HOME|")"
 
 ZSHENV_FILE="$HOME/.zshenv"
+ZSHRC_FILE="$HOME/.zshrc"
 ZSHCONF_DIR=$SELF_DIR
-ZSHENV_FILE_COMMAND="ZDOTDIR=$ZSHCONF_DIR; source \$ZDOTDIR/.zshenv 2> /dev/null;"
-if [ "$(cat "$ZSHENV_FILE")" == "$ZSHENV_FILE_COMMAND" ]; then
-  echo "zsh config directory already is $ZSHCONF_DIR"
-elif ask "Want to use $SELF_DIR as zsh config directory?"; then
-  echo "Create $ZSHENV_FILE and set zsh config directory to $ZSHCONF_DIR"
-  if [ -f "$ZSHENV_FILE" ]; then
-    echo "File already exist." >&2
-    echo " 1: Migrade $ZSHENV_FILE to $SELF_DIR/.zshenv if needed." >&2
-    echo " 2: Delete $ZSHENV_FILE." >&2
-    echo " 3: Run install again."
-    exit 1
-  fi
-  echo "$ZSHENV_FILE_COMMAND" > "$ZSHENV_FILE"
+
+ZSHENV_FILE_COMMAND="export ZSH_CONFIG_DIR=\"$ZSHCONF_DIR\"; test -e \"\$ZSH_CONFIG_DIR/.zshenv\" && source \"\$ZSH_CONFIG_DIR/.zshenv\""
+ZSHRC_FILE_COMMAND="test -e \"\$ZSH_CONFIG_DIR/.zshrc\" && source \"\$ZSH_CONFIG_DIR/.zshrc\""
+
+if grep -xq "$ZSHENV_FILE_COMMAND" "$ZSHENV_FILE" ; then
+  echo "zsh config already installed within $ZSHENV_FILE"
+else
+  echo "install zsh config within $ZSHENV_FILE"
+  echo "$ZSHENV_FILE_COMMAND" >> "$ZSHENV_FILE"
+fi
+if grep -xq "$ZSHRC_FILE_COMMAND" "$ZSHRC_FILE" ; then
+  echo "zsh config already installed within $ZSHRC_FILE"
+else
+  echo "install zsh config within $ZSHRC_FILE"
+  echo "$ZSHRC_FILE_COMMAND" >> "$ZSHRC_FILE"
 fi
 
 USER=${USER:-$(id -un)}

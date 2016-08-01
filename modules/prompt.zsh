@@ -1,6 +1,7 @@
 # Promt ########################################################################
 
-# ↓↑●✖✚
+# http://www.utf8icons.com/
+# http://apps.timwhitlock.info/emoji/tables/unicode
 
 setopt NOTIFY # Report the status of background jobs immediately, rather than waiting until just before printing a prompt.
 setopt INTERACTIVE_COMMENTS # Allowes to use #-sign as comment within commandline
