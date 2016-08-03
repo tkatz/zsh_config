@@ -1,5 +1,5 @@
 function pid {
-  ps -ax -o pid,cmd | grep $@ | grep -v "grep"
+  ps -ax -o 'pid, command' | grep $@ | grep -v "grep"
 }
 
 function limits {
@@ -12,5 +12,3 @@ function limits {
   fi
   cat "/proc/$pid/limits"
 }
-
-

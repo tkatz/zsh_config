@@ -3,7 +3,7 @@ alias mv='\mv -i' # ask before overwrite file
 alias cp='\cp -i' # ask before overwrite file
 alias rm='\rm -i' # ask before remove file
 
-alias ls='ls -Gl' # colorize types
+alias ls='ls -Glh' # G - colorize types, l - long format, h - human readable
 alias grep='grep --color=auto' # colorize matching parts
 
 #colorize manpage
@@ -19,7 +19,3 @@ man() {
 
 
 # install OSX: sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ~/.ssl/localhost.pem
-
-##### suffix aliases
-
-#alias -s jpeg="open"

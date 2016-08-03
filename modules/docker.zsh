@@ -9,13 +9,6 @@ function docker-env {
   eval $(docker-machine env $DOCKER_ENV)
 }
 
-# function docker {
-#   if [ -z "$DOCKER_MACHINE_NAME" ]; then
-#       docker-env
-#   fi
-#   command docker $@
-# }
-
 function docker-connect {
   docker exec -i -t $1 sh
 }

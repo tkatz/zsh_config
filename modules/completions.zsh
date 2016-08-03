@@ -14,17 +14,22 @@ unsetopt CORRECT # disable Spelling corrections
 
 autoload -Uz compinit && compinit
 
+
+# Make the list prompt friendly
+#zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
+
+# Make the selection prompt friendly when there are a lot of choices
+zstyle ':completion:*' select-prompt '%Sat %p%s'
+
 # ls Colors
 export LSCOLORS="exfxcxdxbxegedabagacad" #used by ls
 export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30"
-
 
 # Fuzzy matching of completions
 zstyle ':completion:*' completer _complete _match _approximate _history
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)' # the number of allowed errors by _approximate increases with the length of what you have typed so far
-
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # Hypen- & caseinsensitive matching
 zstyle ':completion:*' list-colors "$LS_COLORS"
@@ -53,7 +58,7 @@ zstyle ':completion:*' menu select
 # ## Use caching
 # zstyle ':completion::complete:*' use-cache true
 # zstyle ':completion::complete:*' cache-path ~/.cache/
-
+# zstyle ':completion:*' accept-exact '*(N)'
 
 zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd will never select the parent directory (e.g.: cd ../<TAB>)
 
@@ -65,8 +70,6 @@ zstyle ':completion:*:*:*:*:processes-names' command  'ps -c -u ${USER} -o comma
 zstyle ':completion:*:*kill:*' force-list always
 
 zstyle ':completion:*:killall:*' command 'ps -u $USER -o command'
-
-
 
 ###
 
@@ -81,7 +84,6 @@ zstyle ':completion:*:killall:*' command 'ps -u $USER -o command'
 # zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 # zstyle ':completion:*' use-compctl false
 # zstyle ':completion:*' verbose true
-
 
 ###
 #zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'

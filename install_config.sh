@@ -39,5 +39,8 @@ fi
 if [ "$CURRENT_USER_SHELL" == "/bin/zsh" ]; then
   echo "user shell already is /bin/zsh"
 elif ask "Want to change shell for current user?"; then
+  if ! grep -xq "/bin/zsh" "/etc/shells"; then
+    echo "/bin/zsh" >> "/etc/shells"
+  fi
   chsh -s /bin/zsh
 fi

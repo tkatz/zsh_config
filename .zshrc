@@ -1,12 +1,14 @@
 # aliases
+# #### suffix aliases
+# alias -s jpeg="open"
 
 # load core module
-source "$ZSH_MODULE_DIR/core.zsh"
-source "$ZSH_MODULE_DIR/plugins.zsh"
+source "$ZSH_MODULE_DIR/zsh_core.zsh"
+source "$ZSH_MODULE_DIR/zsh_plugins.zsh"
 
 # load all modules
 for module in $(find "$ZSH_MODULE_DIR" -type f -name '*.zsh'); do
-  [ "$module" = "$ZSH_MODULE_DIR/core.zsh" ] && continue
-  [ "$module" = "$ZSH_MODULE_DIR/plugins.zsh" ] && continue
+  [ "$module" = "$ZSH_MODULE_DIR/zsh_core.zsh" ] && continue
+  [ "$module" = "$ZSH_MODULE_DIR/zsh_plugins.zsh" ] && continue
   source $module
 done
