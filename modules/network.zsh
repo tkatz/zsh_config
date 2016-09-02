@@ -18,6 +18,19 @@ function ip-internal {
   fi
 }
 
+function ip-internal6 {
+  interface_list=($(ifconfig -l))
+  for interface in $interface_list; do
+      if [ $interface != "lo0" ]; then
+        ip6=$(ifconfig $interface | grep inet6 | awk -F " " '{print $2}')
+        if [ -n "$ip6" ]; then
+          echo "$interface"
+          echo "$ip6"
+        fi
+      fi
+  done
+}
+
 function ip-external {
   curl ifconfig.co
 }
