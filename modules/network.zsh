@@ -21,3 +21,11 @@ function ip-internal {
 function ip-external {
   curl ifconfig.co
 }
+
+function ip-external4 {
+  curl v4.ifconfig.co
+}
+
+function ip-external6 {
+  curl v6.ifconfig.co
+}
